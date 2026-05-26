@@ -1,16 +1,21 @@
-## Hi there 👋
+# Hi there, I'm Aziz Khan 👋
 
-<!--
-**Azizkhan-zezo/azizkhan-zezo** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+Welcome to my GitHub profile! I am an aspiring web developer passionate about coding and building creative projects on the internet.
 
-Here are some ideas to get you started:
+---
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+### 🚀 About Me
+
+- 🔭 **I’m currently working on:** Building and improving my first live web applications.
+- 🌱 **I’m currently learning:** HTML5, CSS3, and JavaScript.
+- 💬 **Ask me about:** Web design, front-end development, and new project ideas.
+- ⚡ **Fun fact:** I successfully launched my very first website on GitHub entirely using my mobile phone!
+
+---
+
+### 🛠️ Tech Stack & Skills
+- **Frontend:** HTML5 🌐 | CSS3 🎨
+- **Tools:** Git & GitHub 🚀
+
+---
+*Thank you for visiting my profile! Feel free to explore my repositories.*
