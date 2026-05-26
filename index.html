@@ -5,15 +5,269 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>عزیز خان کی ویب سائٹ</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f0f8ff; text-align: center; padding: 50px; }
-        h1 { color: #2e8b57; font-size: 35px; }
-        p { color: #333; font-size: 20px; }
-        button { background-color: #2e8b57; color: white; border: none; padding: 12px 25px; font-size: 18px; cursor: pointer; border-radius: 5px; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2e8b57 0%, #1e5c3d 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 45px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .profile-section {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #2e8b57;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-section h2 {
+            color: #2e8b57;
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .profile-section p {
+            color: #555;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 40px 20px;
+            background: #f9f9f9;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            color: #2e8b57;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 15px;
+        }
+
+        .gallery {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .gallery h2 {
+            color: #2e8b57;
+            font-size: 30px;
+            margin-bottom: 30px;
+        }
+
+        .gallery-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-image:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-image img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .buttons {
+            padding: 30px 20px;
+            text-align: center;
+            background: white;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        button {
+            background: linear-gradient(135deg, #2e8b57 0%, #1e5c3d 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 5px 15px rgba(46, 139, 87, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(46, 139, 87, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        footer {
+            background: #2e8b57;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 32px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-images {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+
+            button {
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
 <body>
-    <h1>السلام علیکم!</h1>
-    <p>عزیز خان کی پہلی لائیو ویب سائٹ کامیابی سے چل رہی ہے۔ 🎉</p>
-    <button onclick="alert('مبارک ہو عزیز خان! آپ انٹرنیٹ پر لائیو ہیں 🚀')">یہاں کلک کریں</button>
+    <div class="container">
+        <header>
+            <h1>🌟 السلام علیکم!</h1>
+            <p>عزیز خان کی ویب سائٹ میں خوش آمدید</p>
+        </header>
+
+        <div class="profile-section">
+            <img src="https://via.placeholder.com/150?text=عزیز+خان" alt="عزیز خان" class="profile-image">
+            <h2>عزیز خان</h2>
+            <p>میری پہلی لائیو ویب سائٹ کامیابی سے چل رہی ہے۔ یہ ایک جدید اور انٹرایکٹو ویب سائٹ ہے جو آپ کو میری سرگرمیوں اور مہارتوں کے بارے میں معلومات دیتی ہے۔ 🚀</p>
+        </div>
+
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">💻</div>
+                <h3>ویب ڈیزائن</h3>
+                <p>جدید اور responsive ویب سائٹز بناتا ہوں</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>موبائل فرینڈلی</h3>
+                <p>تمام ڈیوائسز پر بہترین تجربہ</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>خلاقانہ ڈیزائن</h3>
+                <p>منفرد اور جدید ڈیزائن حل</p>
+            </div>
+        </div>
+
+        <div class="gallery">
+            <h2>📸 میری تصویریں</h2>
+            <div class="gallery-images">
+                <div class="gallery-image">
+                    <img src="https://via.placeholder.com/200?text=تصویر+1" alt="تصویر 1">
+                </div>
+                <div class="gallery-image">
+                    <img src="https://via.placeholder.com/200?text=تصویر+2" alt="تصویر 2">
+                </div>
+                <div class="gallery-image">
+                    <img src="https://via.placeholder.com/200?text=تصویر+3" alt="تصویر 3">
+                </div>
+                <div class="gallery-image">
+                    <img src="https://via.placeholder.com/200?text=تصویر+4" alt="تصویر 4">
+                </div>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button onclick="alert('🎉 مبارک ہو عزیز خان! آپ انٹرنیٹ پر لائیو ہیں 🚀')">
+                خوش خبری
+            </button>
+            <button onclick="alert('📧 میرا ای میل: azizkhan@example.com')">
+                رابطہ کریں
+            </button>
+            <button onclick="window.open('https://github.com/azizkhan-zezo', '_blank')">
+                GitHub دیکھیں
+            </button>
+        </div>
+
+        <footer>
+            <p>© 2025 عزیز خان کی ویب سائٹ | تمام حقوق محفوظ ہیں ✨</p>
+        </footer>
+    </div>
 </body>
 </html>
