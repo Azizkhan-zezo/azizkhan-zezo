@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="عزیز خان کی پروفیشنل ویب سائٹ - ویب ڈیزائن اور ڈیولپمنٹ">
+    <meta property="og:title" content="عزیز خان کی ویب سائٹ">
+    <meta property="og:description" content="جدید اور انٹرایکٹو ویب سائٹ">
+    <meta property="og:type" content="website">
     <title>عزیز خان کی ویب سائٹ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -11,11 +16,27 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-color: #2e8b57;
+            --secondary-color: #1e5c3d;
+            --light-bg: #f9f9f9;
+            --text-dark: #333;
+            --text-light: #666;
+            --dark-bg: #1a1a1a;
+            --dark-secondary: #2d2d2d;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
+            transition: background 0.3s ease;
+            direction: rtl;
+        }
+
+        body.dark-mode {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
         }
 
         .container {
@@ -25,10 +46,39 @@
             border-radius: 15px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
             overflow: hidden;
+            transition: background 0.3s ease;
+        }
+
+        body.dark-mode .container {
+            background: var(--dark-bg);
+            color: white;
+        }
+
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            z-index: 1000;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(46, 139, 87, 0.3);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 7px 20px rgba(46, 139, 87, 0.4);
         }
 
         header {
-            background: linear-gradient(135deg, #2e8b57 0%, #1e5c3d 100%);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             color: white;
             padding: 40px 20px;
             text-align: center;
@@ -38,16 +88,60 @@
             font-size: 45px;
             margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: slideDown 0.6s ease;
         }
 
         header p {
             font-size: 18px;
             opacity: 0.9;
+            animation: fadeIn 1s ease;
         }
 
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scroll-spy {
+            animation: slideUp 0.6s ease forwards;
+        }
+
+        /* Profile Section */
         .profile-section {
             padding: 40px 20px;
             text-align: center;
+            background: white;
+            transition: background 0.3s ease;
+        }
+
+        body.dark-mode .profile-section {
+            background: var(--dark-secondary);
         }
 
         .profile-image {
@@ -55,30 +149,78 @@
             height: 150px;
             border-radius: 50%;
             object-fit: cover;
-            border: 5px solid #2e8b57;
+            border: 5px solid var(--primary-color);
             margin-bottom: 20px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05) rotate(5deg);
         }
 
         .profile-section h2 {
-            color: #2e8b57;
+            color: var(--primary-color);
             font-size: 30px;
             margin-bottom: 15px;
         }
 
+        body.dark-mode .profile-section h2 {
+            color: #4db8a8;
+        }
+
         .profile-section p {
-            color: #555;
+            color: var(--text-light);
             font-size: 18px;
             line-height: 1.6;
             margin-bottom: 20px;
         }
 
+        body.dark-mode .profile-section p {
+            color: #ccc;
+        }
+
+        /* Statistics Section */
+        .statistics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            text-align: center;
+        }
+
+        .stat-card {
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 40px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* Features Section */
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
             padding: 40px 20px;
-            background: #f9f9f9;
+            background: var(--light-bg);
+            transition: background 0.3s ease;
+        }
+
+        body.dark-mode .features {
+            background: var(--dark-bg);
         }
 
         .feature-card {
@@ -88,6 +230,10 @@
             text-align: center;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        body.dark-mode .feature-card {
+            background: var(--dark-secondary);
         }
 
         .feature-card:hover {
@@ -101,25 +247,271 @@
         }
 
         .feature-card h3 {
-            color: #2e8b57;
+            color: var(--primary-color);
             font-size: 22px;
             margin-bottom: 10px;
         }
 
+        body.dark-mode .feature-card h3 {
+            color: #4db8a8;
+        }
+
         .feature-card p {
-            color: #666;
+            color: var(--text-light);
             font-size: 15px;
         }
 
-        .gallery {
+        body.dark-mode .feature-card p {
+            color: #ccc;
+        }
+
+        /* Skills Section */
+        .skills {
             padding: 40px 20px;
+            background: white;
+            transition: background 0.3s ease;
+        }
+
+        body.dark-mode .skills {
+            background: var(--dark-secondary);
+        }
+
+        .skills h2 {
+            color: var(--primary-color);
+            font-size: 30px;
+            margin-bottom: 30px;
             text-align: center;
         }
 
-        .gallery h2 {
-            color: #2e8b57;
+        body.dark-mode .skills h2 {
+            color: #4db8a8;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-item {
+            background: var(--light-bg);
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        body.dark-mode .skill-item {
+            background: var(--dark-bg);
+        }
+
+        .skill-item:hover {
+            transform: translateX(-5px);
+        }
+
+        .skill-name {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        body.dark-mode .skill-name {
+            color: #4db8a8;
+        }
+
+        .skill-bar {
+            background: #ddd;
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        body.dark-mode .skill-bar {
+            background: #444;
+        }
+
+        .skill-progress {
+            background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            height: 100%;
+            border-radius: 5px;
+            transition: width 1s ease;
+        }
+
+        /* Education Section */
+        .education {
+            padding: 40px 20px;
+            background: var(--light-bg);
+            transition: background 0.3s ease;
+        }
+
+        body.dark-mode .education {
+            background: var(--dark-bg);
+        }
+
+        .education h2 {
+            color: var(--primary-color);
             font-size: 30px;
             margin-bottom: 30px;
+            text-align: center;
+        }
+
+        body.dark-mode .education h2 {
+            color: #4db8a8;
+        }
+
+        .education-item {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-right: 4px solid var(--primary-color);
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        body.dark-mode .education-item {
+            background: var(--dark-secondary);
+        }
+
+        .education-item:hover {
+            transform: translateX(-5px);
+        }
+
+        .education-year {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .education-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px 0 5px 0;
+        }
+
+        body.dark-mode .education-title {
+            color: #fff;
+        }
+
+        .education-desc {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        body.dark-mode .education-desc {
+            color: #ccc;
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 40px 20px;
+            background: white;
+            transition: background 0.3s ease;
+        }
+
+        body.dark-mode .projects {
+            background: var(--dark-secondary);
+        }
+
+        .projects h2 {
+            color: var(--primary-color);
+            font-size: 30px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        body.dark-mode .projects h2 {
+            color: #4db8a8;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            background: var(--light-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        body.dark-mode .project-card {
+            background: var(--dark-bg);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        body.dark-mode .project-title {
+            color: #fff;
+        }
+
+        .project-desc {
+            color: var(--text-light);
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        body.dark-mode .project-desc {
+            color: #ccc;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .project-tag {
+            background: var(--primary-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+        }
+
+        /* Gallery */
+        .gallery {
+            padding: 40px 20px;
+            text-align: center;
+            background: var(--light-bg);
+            transition: background 0.3s ease;
+        }
+
+        body.dark-mode .gallery {
+            background: var(--dark-bg);
+        }
+
+        .gallery h2 {
+            color: var(--primary-color);
+            font-size: 30px;
+            margin-bottom: 30px;
+        }
+
+        body.dark-mode .gallery h2 {
+            color: #4db8a8;
         }
 
         .gallery-images {
@@ -145,18 +537,176 @@
             object-fit: cover;
         }
 
+        /* Testimonials */
+        .testimonials {
+            padding: 40px 20px;
+            background: white;
+            transition: background 0.3s ease;
+        }
+
+        body.dark-mode .testimonials {
+            background: var(--dark-secondary);
+        }
+
+        .testimonials h2 {
+            color: var(--primary-color);
+            font-size: 30px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        body.dark-mode .testimonials h2 {
+            color: #4db8a8;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .testimonial-card {
+            background: var(--light-bg);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        body.dark-mode .testimonial-card {
+            background: var(--dark-bg);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .testimonial-text {
+            color: var(--text-light);
+            font-size: 15px;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        body.dark-mode .testimonial-text {
+            color: #ccc;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        body.dark-mode .testimonial-author {
+            color: #4db8a8;
+        }
+
+        .testimonial-role {
+            color: var(--text-light);
+            font-size: 13px;
+        }
+
+        body.dark-mode .testimonial-role {
+            color: #999;
+        }
+
+        .stars {
+            color: #ffc107;
+            margin-bottom: 10px;
+        }
+
+        /* Contact Form */
+        .contact {
+            padding: 40px 20px;
+            background: var(--light-bg);
+            transition: background 0.3s ease;
+        }
+
+        body.dark-mode .contact {
+            background: var(--dark-bg);
+        }
+
+        .contact h2 {
+            color: var(--primary-color);
+            font-size: 30px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        body.dark-mode .contact h2 {
+            color: #4db8a8;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .contact-form {
+            background: var(--dark-secondary);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--text-dark);
+        }
+
+        body.dark-mode .form-group label {
+            color: #fff;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 15px;
+            transition: border-color 0.3s ease;
+        }
+
+        body.dark-mode .form-group input,
+        body.dark-mode .form-group textarea {
+            background: var(--dark-bg);
+            color: #fff;
+            border-color: #444;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        /* Buttons */
         .buttons {
             padding: 30px 20px;
             text-align: center;
             background: white;
+            transition: background 0.3s ease;
             display: flex;
             gap: 15px;
             flex-wrap: wrap;
             justify-content: center;
         }
 
-        button {
-            background: linear-gradient(135deg, #2e8b57 0%, #1e5c3d 100%);
+        body.dark-mode .buttons {
+            background: var(--dark-secondary);
+        }
+
+        button, .btn {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             color: white;
             border: none;
             padding: 15px 30px;
@@ -165,25 +715,58 @@
             cursor: pointer;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             box-shadow: 0 5px 15px rgba(46, 139, 87, 0.3);
+            text-decoration: none;
+            display: inline-block;
         }
 
-        button:hover {
+        button:hover, .btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 7px 20px rgba(46, 139, 87, 0.4);
         }
 
-        button:active {
+        button:active, .btn:active {
             transform: translateY(0);
         }
 
+        /* Social Links */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            font-size: 24px;
+        }
+
+        .social-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode .social-link {
+            color: #4db8a8;
+        }
+
+        .social-link:hover {
+            transform: scale(1.2) translateY(-5px);
+            color: var(--secondary-color);
+        }
+
+        /* Footer */
         footer {
-            background: #2e8b57;
+            background: var(--primary-color);
             color: white;
             text-align: center;
             padding: 20px;
             font-size: 14px;
+            transition: background 0.3s ease;
         }
 
+        body.dark-mode footer {
+            background: #1a3a2a;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
             header h1 {
                 font-size: 32px;
@@ -197,14 +780,33 @@
                 grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             }
 
-            button {
+            button, .btn {
                 padding: 12px 24px;
                 font-size: 14px;
+            }
+
+            .theme-toggle {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
+
+            .projects-grid,
+            .skills-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .social-links {
+                gap: 15px;
+                font-size: 20px;
             }
         }
     </style>
 </head>
 <body>
+    <button class="theme-toggle" onclick="toggleDarkMode()" title="Dark Mode">🌙</button>
+
     <div class="container">
         <header>
             <h1>🌟 السلام علیکم!</h1>
@@ -214,7 +816,27 @@
         <div class="profile-section">
             <img src="https://via.placeholder.com/150?text=عزیز+خان" alt="عزیز خان" class="profile-image">
             <h2>عزیز خان</h2>
-            <p>میری پہلی لائیو ویب سائٹ کامیابی سے چل رہی ہے۔ یہ ایک جدید اور انٹرایکٹو ویب سائٹ ہے جو آپ کو میری سرگرمیوں اور مہارتوں کے بارے میں معلومات دیتی ہے۔ 🚀</p>
+            <p>میری پہلی لائیو ویب سائٹ کامیابی سے چل رہی ہے۔ یہ ایک جدید اور انٹرایکٹو ویب سائٹ ہے جو آپ کو میری سرگرمیوں، پروجیکٹس اور مہارتوں کے بارے میں بتاتی ہے۔</p>
+        </div>
+
+        <!-- Statistics Section -->
+        <div class="statistics">
+            <div class="stat-card">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">مکمل پروجیکٹس</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">خوش گاہک</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">5+</div>
+                <div class="stat-label">سالوں کا تجربہ</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">سپورٹ</div>
+            </div>
         </div>
 
         <div class="features">
@@ -232,6 +854,102 @@
                 <div class="feature-icon">🎨</div>
                 <h3>خلاقانہ ڈیزائن</h3>
                 <p>منفرد اور جدید ڈیزائن حل</p>
+            </div>
+        </div>
+
+        <!-- Skills Section -->
+        <div class="skills">
+            <h2>🎯 میری مہارتیں</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <div class="skill-name">HTML/CSS</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 95%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">JavaScript</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">React.js</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">Python</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 75%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education Section -->
+        <div class="education">
+            <h2>🎓 تعلیم اور تجربہ</h2>
+            
+            <div class="education-item">
+                <div class="education-year">2023 - 2024</div>
+                <div class="education-title">ویب ڈیزائن میں سرٹیفیکیشن</div>
+                <div class="education-desc">آن لائن کورس سے حاصل - HTML، CSS، JavaScript میں مہارت</div>
+            </div>
+
+            <div class="education-item">
+                <div class="education-year">2022 - 2023</div>
+                <div class="education-title">سافٹویئر ڈیولپمنٹ کورس</div>
+                <div class="education-desc">مختلف programming languages اور frameworks میں تربیت</div>
+            </div>
+
+            <div class="education-item">
+                <div class="education-year">2020 - 2021</div>
+                <div class="education-title">فریلانس کام کا آغاز</div>
+                <div class="education-desc">مختلف کلائنٹس کے لیے ویب سائٹس اور applications بنانے کا کام</div>
+            </div>
+        </div>
+
+        <!-- Projects Section -->
+        <div class="projects">
+            <h2>🚀 میرے پروجیکٹس</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">🛒</div>
+                    <div class="project-content">
+                        <div class="project-title">ای کامرس سائٹ</div>
+                        <div class="project-desc">مکمل آن لائن شاپنگ پلیٹ فارم</div>
+                        <div class="project-tags">
+                            <span class="project-tag">React</span>
+                            <span class="project-tag">Firebase</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">📱</div>
+                    <div class="project-content">
+                        <div class="project-title">موبائل ایپ</div>
+                        <div class="project-desc">مختلف فیچرز کے ساتھ ایپلیکیشن</div>
+                        <div class="project-tags">
+                            <span class="project-tag">React Native</span>
+                            <span class="project-tag">Node.js</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">💼</div>
+                    <div class="project-content">
+                        <div class="project-title">کمپنی ویب سائٹ</div>
+                        <div class="project-desc">پروفیشنل کارپوریٹ سائٹ</div>
+                        <div class="project-tags">
+                            <span class="project-tag">HTML/CSS</span>
+                            <span class="project-tag">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -253,15 +971,84 @@
             </div>
         </div>
 
+        <!-- Testimonials Section -->
+        <div class="testimonials">
+            <h2>⭐ لوگوں کی رائیں</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <div class="testimonial-text">"عزیز خان ایک بہترین ڈیزائنر ہے۔ انہوں نے ہماری سائٹ کو بہت خوبصورت بنایا۔"</div>
+                    <div class="testimonial-author">احمد علی</div>
+                    <div class="testimonial-role">کمپنی ڈائریکٹر</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <div class="testimonial-text">"بہترین سروس اور تیز رفتار کام۔ میں دوبارہ ضرور کام کرانے جا رہا ہوں۔"</div>
+                    <div class="testimonial-author">فاطمہ خان</div>
+                    <div class="testimonial-role">ای کامرس مالک</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <div class="testimonial-text">"انتہائی پروفیشنل اور قابل اعتماد۔ میری تمام ضروریات پوری کیں۔"</div>
+                    <div class="testimonial-author">محمد حسن</div>
+                    <div class="testimonial-role">اسٹارٹ اپ کے بانی</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="contact">
+            <h2>📞 ہم سے رابطہ کریں</h2>
+            <form class="contact-form" onsubmit="handleContactForm(event)">
+                <div class="form-group">
+                    <label for="name">آپ کا نام</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">ای میل</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">موضوع</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">پیغام</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit">پیغام بھیجیں 📧</button>
+            </form>
+
+            <div class="social-links">
+                <a href="https://facebook.com" class="social-link" title="Facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://twitter.com" class="social-link" title="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://linkedin.com" class="social-link" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/azizkhan-zezo" class="social-link" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://instagram.com" class="social-link" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+
         <div class="buttons">
             <button onclick="alert('🎉 مبارک ہو عزیز خان! آپ انٹرنیٹ پر لائیو ہیں 🚀')">
-                خوش خبری
+                خوش خبری 🎉
             </button>
-            <button onclick="alert('📧 میرا ای میل: azizkhan@example.com')">
-                رابطہ کریں
+            <button onclick="scrollToSection('contact')">
+                رابطہ کریں 📧
             </button>
             <button onclick="window.open('https://github.com/azizkhan-zezo', '_blank')">
-                GitHub دیکھیں
+                GitHub دیکھیں 💻
             </button>
         </div>
 
@@ -269,5 +1056,74 @@
             <p>© 2025 عزیز خان کی ویب سائٹ | تمام حقوق محفوظ ہیں ✨</p>
         </footer>
     </div>
+
+    <script>
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+            
+            const toggle = document.querySelector('.theme-toggle');
+            toggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        }
+
+        // Check saved theme preference
+        window.addEventListener('DOMContentLoaded', () => {
+            const isDarkMode = localStorage.getItem('darkMode') === 'true';
+            if (isDarkMode) {
+                document.body.classList.add('dark-mode');
+                document.querySelector('.theme-toggle').textContent = '☀️';
+            }
+        });
+
+        // Smooth Scrolling
+        function scrollToSection(sectionId) {
+            const section = document.querySelector('.' + sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Contact Form Handler
+        function handleContactForm(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            const mailtoLink = `mailto:azizkhan@example.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`نام: ${name}\nای میل: ${email}\n\nپیغام:\n${message}`)}`;
+            window.location.href = mailtoLink;
+            
+            alert('شکریہ! آپ کا پیغام بھیج دیا گیا ہے۔');
+            document.querySelector('.contact-form').reset();
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('scroll-spy');
+                }
+            });
+        }, observerOptions);
+
+        // Animate skill bars on scroll
+        const skillItems = document.querySelectorAll('.skill-item');
+        skillItems.forEach(item => {
+            observer.observe(item);
+        });
+
+        // Animate cards
+        document.querySelectorAll('.feature-card, .project-card, .testimonial-card, .education-item').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
 </body>
 </html>
